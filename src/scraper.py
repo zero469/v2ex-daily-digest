@@ -7,6 +7,7 @@ from typing import List, Dict
 
 # V2EX API
 V2EX_TOPICS_API = "https://www.v2ex.com/api/topics/show.json"
+V2EX_REPLIES_API = "https://www.v2ex.com/api/replies/show.json"
 
 # 默认节点配置
 DEFAULT_NODES = [
@@ -79,6 +80,33 @@ def fetch_node_topics(node: str, limit: int = 20) -> List[Dict]:
         return recent_topics
     except Exception as e:
         print(f"Error fetching node {node}: {e}")
+        return []
+
+
+def fetch_topic_replies(topic_id: int, max_replies: int = 20) -> List[str]:
+    """获取帖子的评论内容"""
+    try:
+        url = f"{V2EX_REPLIES_API}?topic_id={topic_id}"
+        headers = {
+            "User-Agent": "V2EX-Daily-Digest/1.0"
+        }
+        response = requests.get(url, headers=headers, timeout=30)
+        response.raise_for_status()
+        replies = response.json()
+        
+        # 提取评论内容，最多取 max_replies 条
+        reply_contents = []
+        for reply in replies[:max_replies]:
+            content = reply.get("content", "").strip()
+            if content:
+                # 限制单条评论长度
+                if len(content) > 200:
+                    content = content[:200] + "..."
+                reply_contents.append(content)
+        
+        return reply_contents
+    except Exception:
+        # 静默失败，不影响主流程
         return []
 
 

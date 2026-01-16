@@ -65,11 +65,21 @@ def generate_html_email(all_data: Dict[str, Dict[str, Any]]) -> str:
         }}
         .topic-summary {{
             font-size: 13px;
-            color: #555;
-            margin-top: 6px;
-            padding: 8px 12px;
+            color: #444;
+            margin-top: 8px;
+            padding: 10px 14px;
             background: #f8f9fa;
             border-left: 3px solid #4a90d9;
+            border-radius: 4px;
+            line-height: 1.5;
+        }}
+        .comments-summary {{
+            font-size: 12px;
+            color: #666;
+            margin-top: 6px;
+            padding: 8px 12px;
+            background: #fff8e6;
+            border-left: 3px solid #f0ad4e;
             border-radius: 4px;
         }}
         .topic-meta {{
@@ -126,12 +136,18 @@ def generate_html_email(all_data: Dict[str, Dict[str, Any]]) -> str:
                 if topic.get("summary"):
                     summary_html = f'<div class="topic-summary">💡 {topic["summary"]}</div>'
                 
+                # 评论精华
+                comments_html = ""
+                if topic.get("comments_summary"):
+                    comments_html = f'<div class="comments-summary">💬 {topic["comments_summary"]}</div>'
+                
                 html += f"""
         <div class="topic">
             <div class="topic-title">
                 <a href="{topic['url']}" target="_blank">{topic['title']}</a>
             </div>
             {summary_html}
+            {comments_html}
             <div class="topic-meta">
                 👤 {topic['author']} · 🕐 {topic['created']} {replies_badge}
             </div>
