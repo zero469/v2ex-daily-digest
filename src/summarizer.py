@@ -1,10 +1,14 @@
 """AI 摘要模块 - 使用 Gemini"""
 import os
+import time
 import requests
 from typing import Dict, List
 
 
 GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
+
+# 请求间隔（秒），避免 429 限流
+REQUEST_DELAY = 1.5
 
 
 def summarize_topic(title: str, content: str = "") -> str:
@@ -69,13 +73,23 @@ def summarize_topics(topics: List[Dict]) -> List[Dict]:
         return topics
     
     print("  Generating AI summaries...")
-    for topic in topics:
+    for i, topic in enumerate(topics):
+        # 请求间隔，避免限流
+        if i > 0:
+            time.sleep(REQUEST_DELAY)
+        
         # 获取帖子内容
         content = fetch_topic_content(topic["id"])
+        
+        # 再次延迟，因为刚调用了 V2EX API
+        time.sleep(0.5)
+        
         # 生成摘要
         summary = summarize_topic(topic["title"], content)
         topic["summary"] = summary
         if summary:
             print(f"    ✓ {topic['title'][:30]}...")
+        else:
+            print(f"    ✗ {topic['title'][:30]}... (failed)")
     
     return topics
