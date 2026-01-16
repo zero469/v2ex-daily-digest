@@ -1,16 +1,14 @@
 """AI 摘要模块 - 使用 Azure OpenAI"""
 import os
 import time
-import requests
 from typing import Dict, List
+from openai import AzureOpenAI
 
 
 # Azure OpenAI 配置
-AZURE_OPENAI_ENDPOINT = os.environ.get(
-    "AZURE_OPENAI_ENDPOINT",
-    "https://ai-imliuyao1639ai979686794225.cognitiveservices.azure.com/openai/responses"
-)
-AZURE_API_VERSION = "2025-04-01-preview"
+AZURE_ENDPOINT = "https://ai-imliuyao1639ai979686794225.cognitiveservices.azure.com/"
+AZURE_API_VERSION = "2024-12-01-preview"
+DEPLOYMENT_NAME = "gpt-5.2-chat"
 
 # 每批处理的帖子数量
 BATCH_SIZE = 10
@@ -25,12 +23,21 @@ MAX_RETRIES = 3
 RETRY_DELAY = 5
 
 
-def summarize_batch(topics: List[Dict]) -> Dict[int, str]:
-    """批量总结多个帖子，返回 {topic_id: summary}"""
+def get_client() -> AzureOpenAI | None:
+    """获取 Azure OpenAI 客户端"""
     api_key = os.environ.get("AZURE_OPENAI_KEY")
     if not api_key:
-        return {}
+        return None
     
+    return AzureOpenAI(
+        api_version=AZURE_API_VERSION,
+        azure_endpoint=AZURE_ENDPOINT,
+        api_key=api_key,
+    )
+
+
+def summarize_batch(client: AzureOpenAI, topics: List[Dict]) -> Dict[int, str]:
+    """批量总结多个帖子，返回 {topic_id: summary}"""
     # 构建批量 prompt
     topics_text = ""
     for topic in topics:
@@ -48,45 +55,29 @@ def summarize_batch(topics: List[Dict]) -> Dict[int, str]:
 
     for attempt in range(MAX_RETRIES):
         try:
-            url = f"{AZURE_OPENAI_ENDPOINT}?api-version={AZURE_API_VERSION}"
-            
-            response = requests.post(
-                url,
-                json={
-                    "model": "gpt-4o",
-                    "input": prompt,
-                },
-                headers={
-                    "Content-Type": "application/json",
-                    "api-key": api_key
-                },
-                timeout=60
+            response = client.chat.completions.create(
+                model=DEPLOYMENT_NAME,
+                messages=[
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.7,
+                max_tokens=1000,
             )
             
-            if response.status_code == 429:
-                wait_time = RETRY_DELAY * (attempt + 1)
-                print(f"    Rate limited, waiting {wait_time}s before retry...")
-                time.sleep(wait_time)
-                continue
-            
-            response.raise_for_status()
-            result = response.json()
-            
-            # Azure OpenAI responses API 格式
-            output_text = ""
-            if "output" in result:
-                for item in result.get("output", []):
-                    if item.get("type") == "message":
-                        for content in item.get("content", []):
-                            if content.get("type") == "output_text":
-                                output_text = content.get("text", "")
-                                break
+            output_text = response.choices[0].message.content or ""
             
             if output_text:
                 return parse_batch_response(output_text)
             return {}
             
         except Exception as e:
+            error_str = str(e)
+            if "429" in error_str or "rate" in error_str.lower():
+                wait_time = RETRY_DELAY * (attempt + 1)
+                print(f"    Rate limited, waiting {wait_time}s before retry...")
+                time.sleep(wait_time)
+                continue
+            
             print(f"    Azure OpenAI error (attempt {attempt + 1}): {e}")
             if attempt < MAX_RETRIES - 1:
                 time.sleep(RETRY_DELAY)
@@ -114,8 +105,8 @@ def parse_batch_response(text: str) -> Dict[int, str]:
 
 def summarize_topics(topics: List[Dict]) -> List[Dict]:
     """为帖子列表添加 AI 摘要"""
-    api_key = os.environ.get("AZURE_OPENAI_KEY")
-    if not api_key:
+    client = get_client()
+    if not client:
         print("Warning: AZURE_OPENAI_KEY not set, skipping summarization")
         return topics
     
@@ -137,7 +128,7 @@ def summarize_topics(topics: List[Dict]) -> List[Dict]:
             time.sleep(BATCH_DELAY)
         
         # 批量获取摘要
-        summaries = summarize_batch(batch)
+        summaries = summarize_batch(client, batch)
         
         # 应用摘要到帖子
         success_count = 0
