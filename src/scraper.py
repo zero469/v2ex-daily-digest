@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from typing import List, Dict
 
 # 要抓取的节点
-NODES = ["tech", "creative", "play", "deals"]
+NODES = ["tech", "create", "play", "deals"]
 
 # V2EX API
 V2EX_TOPICS_API = "https://www.v2ex.com/api/topics/show.json"
@@ -12,7 +12,7 @@ V2EX_TOPICS_API = "https://www.v2ex.com/api/topics/show.json"
 # 节点中文名映射
 NODE_NAMES = {
     "tech": "科技",
-    "creative": "创意",
+    "create": "分享创造",
     "play": "分享与探索",
     "deals": "优惠信息"
 }
@@ -29,14 +29,14 @@ def fetch_node_topics(node: str, limit: int = 20) -> List[Dict]:
         response.raise_for_status()
         topics = response.json()
 
-        # 只取最近24小时的帖子
+        # 只取最近48小时的帖子（确保有内容）
         now = datetime.now()
-        yesterday = now - timedelta(hours=24)
+        cutoff = now - timedelta(hours=48)
 
         recent_topics = []
         for topic in topics[:limit]:
             created_time = datetime.fromtimestamp(topic.get("created", 0))
-            if created_time > yesterday:
+            if created_time > cutoff:
                 recent_topics.append({
                     "id": topic.get("id"),
                     "title": topic.get("title"),

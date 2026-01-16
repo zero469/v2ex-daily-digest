@@ -13,7 +13,7 @@ def generate_html_email(all_topics: Dict[str, List[Dict]]) -> str:
     # 节点中文名
     node_names = {
         "tech": "🔬 科技",
-        "creative": "🎨 创意",
+        "create": "🎨 分享创造",
         "play": "🎮 分享与探索",
         "deals": "💰 优惠信息"
     }
