@@ -61,7 +61,7 @@ def summarize_batch(client: AzureOpenAI, topics: List[Dict]) -> Dict[int, str]:
                     {"role": "user", "content": prompt}
                 ],
                 temperature=0.7,
-                max_tokens=1000,
+                max_completion_tokens=1000,
             )
             
             output_text = response.choices[0].message.content or ""
