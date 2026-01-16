@@ -15,7 +15,10 @@ def generate_html_email(all_topics: Dict[str, List[Dict]]) -> str:
         "tech": "🔬 科技",
         "create": "🎨 分享创造",
         "play": "🎮 分享与探索",
-        "deals": "💰 优惠信息"
+        "deals": "💰 优惠信息",
+        "ideas": "💡 奇思妙想",
+        "programmer": "👨‍💻 程序员",
+        "all4all": "❓ 万事皆可问"
     }
 
     html = f"""

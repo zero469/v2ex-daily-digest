@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from typing import List, Dict
 
 # 要抓取的节点
-NODES = ["tech", "create", "play", "deals"]
+NODES = ["tech", "create", "play", "deals", "ideas", "programmer", "all4all"]
 
 # V2EX API
 V2EX_TOPICS_API = "https://www.v2ex.com/api/topics/show.json"
@@ -14,7 +14,10 @@ NODE_NAMES = {
     "tech": "科技",
     "create": "分享创造",
     "play": "分享与探索",
-    "deals": "优惠信息"
+    "deals": "优惠信息",
+    "ideas": "奇思妙想",
+    "programmer": "程序员",
+    "all4all": "万事皆可问"
 }
 
 
