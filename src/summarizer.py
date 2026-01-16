@@ -60,7 +60,6 @@ def summarize_batch(client: AzureOpenAI, topics: List[Dict]) -> Dict[int, str]:
                 messages=[
                     {"role": "user", "content": prompt}
                 ],
-                temperature=0.7,
                 max_completion_tokens=1000,
             )
             
