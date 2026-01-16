@@ -2,24 +2,13 @@
 import os
 import resend
 from datetime import datetime
-from typing import Dict, List
+from typing import Dict, List, Any
 
 
-def generate_html_email(all_topics: Dict[str, List[Dict]]) -> str:
+def generate_html_email(all_data: Dict[str, Dict[str, Any]]) -> str:
     """生成 HTML 格式的邮件内容"""
 
     today = datetime.now().strftime("%Y年%m月%d日")
-
-    # 节点中文名
-    node_names = {
-        "tech": "🔬 科技",
-        "create": "🎨 分享创造",
-        "play": "🎮 分享与探索",
-        "deals": "💰 优惠信息",
-        "ideas": "💡 奇思妙想",
-        "programmer": "👨‍💻 程序员",
-        "all4all": "❓ 万事皆可问"
-    }
 
     html = f"""
 <!DOCTYPE html>
@@ -74,9 +63,19 @@ def generate_html_email(all_topics: Dict[str, List[Dict]]) -> str:
         .topic-title a:hover {{
             color: #4a90d9;
         }}
+        .topic-summary {{
+            font-size: 13px;
+            color: #555;
+            margin-top: 6px;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-left: 3px solid #4a90d9;
+            border-radius: 4px;
+        }}
         .topic-meta {{
             font-size: 12px;
             color: #888;
+            margin-top: 6px;
         }}
         .replies {{
             background: #e8f4e8;
@@ -107,19 +106,32 @@ def generate_html_email(all_topics: Dict[str, List[Dict]]) -> str:
 """
 
     total_count = 0
-    for node, topics in all_topics.items():
-        node_display = node_names.get(node, node)
+    for node_name, data in all_data.items():
+        config = data["config"]
+        topics = data["topics"]
+        
+        emoji = config.get("emoji", "📌")
+        title = config.get("title", node_name)
+        node_display = f"{emoji} {title}"
+        
         html += f'<h2>{node_display} ({len(topics)})</h2>'
 
         if topics:
             for topic in topics:
                 total_count += 1
                 replies_badge = f'<span class="replies">{topic["replies"]} 回复</span>' if topic["replies"] > 0 else ""
+                
+                # AI 摘要
+                summary_html = ""
+                if topic.get("summary"):
+                    summary_html = f'<div class="topic-summary">💡 {topic["summary"]}</div>'
+                
                 html += f"""
         <div class="topic">
             <div class="topic-title">
                 <a href="{topic['url']}" target="_blank">{topic['title']}</a>
             </div>
+            {summary_html}
             <div class="topic-meta">
                 👤 {topic['author']} · 🕐 {topic['created']} {replies_badge}
             </div>
@@ -140,7 +152,7 @@ def generate_html_email(all_topics: Dict[str, List[Dict]]) -> str:
     return html
 
 
-def send_email(to_email: str, all_topics: Dict[str, List[Dict]]) -> bool:
+def send_email(to_email: str, all_data: Dict[str, Dict[str, Any]]) -> bool:
     """发送邮件"""
     api_key = os.environ.get("RESEND_API_KEY")
     if not api_key:
@@ -150,10 +162,10 @@ def send_email(to_email: str, all_topics: Dict[str, List[Dict]]) -> bool:
     resend.api_key = api_key
 
     today = datetime.now().strftime("%m/%d")
-    html_content = generate_html_email(all_topics)
+    html_content = generate_html_email(all_data)
 
     # 计算总帖子数
-    total = sum(len(topics) for topics in all_topics.values())
+    total = sum(len(data["topics"]) for data in all_data.values())
 
     try:
         params = {

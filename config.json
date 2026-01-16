@@ -1,0 +1,24 @@
+{
+    "nodes": [
+        {
+            "name": "create",
+            "title": "分享创造",
+            "emoji": "🎨"
+        },
+        {
+            "name": "ideas",
+            "title": "奇思妙想",
+            "emoji": "💡"
+        },
+        {
+            "name": "programmer",
+            "title": "程序员",
+            "emoji": "👨‍💻"
+        },
+        {
+            "name": "all4all",
+            "title": "二手交易",
+            "emoji": "🛒"
+        }
+    ]
+}
