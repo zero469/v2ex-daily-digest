@@ -5,7 +5,7 @@
 ## 功能特性
 
 - 🔍 自动抓取指定节点的最新帖子
-- 🤖 使用 Gemini AI 提取每个帖子的核心内容
+- 🤖 使用 Azure OpenAI 提取每个帖子的核心内容
 - 📧 生成精美的 HTML 邮件并自动发送
 - ⚙️ 节点可配置，支持自定义
 
@@ -26,9 +26,9 @@
 1. 访问 [Resend](https://resend.com) 并注册账号
 2. 进入 Dashboard → API Keys → Create API Key
 
-**Gemini（AI 摘要，免费）：**
-1. 访问 [Google AI Studio](https://aistudio.google.com/app/apikey)
-2. 创建 API Key
+**Azure OpenAI（AI 摘要）：**
+1. 访问 [Azure Portal](https://portal.azure.com) 并创建 Azure OpenAI 资源
+2. 获取 API Key 和 Endpoint
 
 ### 2. Fork 本仓库
 
@@ -43,7 +43,7 @@
 | Name | Value |
 |------|-------|
 | `RESEND_API_KEY` | 你的 Resend API Key |
-| `GEMINI_API_KEY` | 你的 Gemini API Key |
+| `AZURE_OPENAI_KEY` | 你的 Azure OpenAI API Key |
 | `TO_EMAIL` | 你的收件邮箱 |
 
 > ⚠️ 注意：Resend 免费版只能发送到注册时使用的邮箱。如需发送到其他邮箱，需在 Resend 验证自己的域名。
@@ -100,7 +100,7 @@ pip install -r requirements.txt
 
 # 设置环境变量
 export RESEND_API_KEY="your-resend-key"
-export GEMINI_API_KEY="your-gemini-key"
+export AZURE_OPENAI_KEY="your-azure-openai-key"
 export TO_EMAIL="your-email@example.com"
 
 # 运行
@@ -116,7 +116,7 @@ v2ex-daily-digest/
 ├── src/
 │   ├── main.py             # 主程序入口
 │   ├── scraper.py          # V2EX 帖子抓取
-│   ├── summarizer.py       # Gemini AI 摘要
+│   ├── summarizer.py       # Azure OpenAI 摘要
 │   └── email_sender.py     # 邮件发送
 ├── config.json             # 节点配置
 ├── requirements.txt        # Python 依赖

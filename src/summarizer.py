@@ -1,37 +1,42 @@
-"""AI 摘要模块 - 使用 Gemini"""
+"""AI 摘要模块 - 使用 Azure OpenAI"""
 import os
 import time
 import requests
 from typing import Dict, List
 
 
-GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
+# Azure OpenAI 配置
+AZURE_OPENAI_ENDPOINT = os.environ.get(
+    "AZURE_OPENAI_ENDPOINT",
+    "https://ai-imliuyao1639ai979686794225.cognitiveservices.azure.com/openai/responses"
+)
+AZURE_API_VERSION = "2025-04-01-preview"
 
 # 每批处理的帖子数量
 BATCH_SIZE = 10
 
 # 批次之间的延迟（秒）
-BATCH_DELAY = 5
-
-# 单次请求失败后的重试延迟
-RETRY_DELAY = 10
+BATCH_DELAY = 2
 
 # 最大重试次数
 MAX_RETRIES = 3
 
+# 重试延迟
+RETRY_DELAY = 5
+
 
 def summarize_batch(topics: List[Dict]) -> Dict[int, str]:
     """批量总结多个帖子，返回 {topic_id: summary}"""
-    api_key = os.environ.get("GEMINI_API_KEY")
+    api_key = os.environ.get("AZURE_OPENAI_KEY")
     if not api_key:
         return {}
     
     # 构建批量 prompt
     topics_text = ""
-    for i, topic in enumerate(topics, 1):
-        topics_text += f"\n{i}. 【ID:{topic['id']}】{topic['title']}"
+    for topic in topics:
+        topics_text += f"\n- 【{topic['id']}】{topic['title']}"
     
-    prompt = f"""请为以下V2EX帖子各生成一句简短的中文摘要（10-30字），提取核心要点。
+    prompt = f"""请为以下V2EX帖子各生成一句简短的中文摘要（15-40字），提取核心要点。
 
 格式要求：每行一个，格式为 "ID:摘要"，例如：
 123456:这是一个关于xxx的分享
@@ -39,20 +44,22 @@ def summarize_batch(topics: List[Dict]) -> Dict[int, str]:
 
 帖子列表：{topics_text}
 
-请严格按格式输出，不要有其他内容："""
+请严格按格式输出，每个ID一行，不要有其他内容："""
 
     for attempt in range(MAX_RETRIES):
         try:
+            url = f"{AZURE_OPENAI_ENDPOINT}?api-version={AZURE_API_VERSION}"
+            
             response = requests.post(
-                f"{GEMINI_API_URL}?key={api_key}",
+                url,
                 json={
-                    "contents": [{"parts": [{"text": prompt}]}],
-                    "generationConfig": {
-                        "temperature": 0.3,
-                        "maxOutputTokens": 1000
-                    }
+                    "model": "gpt-4o",
+                    "input": prompt,
                 },
-                headers={"Content-Type": "application/json"},
+                headers={
+                    "Content-Type": "application/json",
+                    "api-key": api_key
+                },
                 timeout=60
             )
             
@@ -61,21 +68,26 @@ def summarize_batch(topics: List[Dict]) -> Dict[int, str]:
                 print(f"    Rate limited, waiting {wait_time}s before retry...")
                 time.sleep(wait_time)
                 continue
-                
+            
             response.raise_for_status()
             result = response.json()
             
-            # 提取生成的文本
-            candidates = result.get("candidates", [])
-            if candidates:
-                parts = candidates[0].get("content", {}).get("parts", [])
-                if parts:
-                    text = parts[0].get("text", "").strip()
-                    return parse_batch_response(text)
+            # Azure OpenAI responses API 格式
+            output_text = ""
+            if "output" in result:
+                for item in result.get("output", []):
+                    if item.get("type") == "message":
+                        for content in item.get("content", []):
+                            if content.get("type") == "output_text":
+                                output_text = content.get("text", "")
+                                break
+            
+            if output_text:
+                return parse_batch_response(output_text)
             return {}
             
         except Exception as e:
-            print(f"    Gemini API error (attempt {attempt + 1}): {e}")
+            print(f"    Azure OpenAI error (attempt {attempt + 1}): {e}")
             if attempt < MAX_RETRIES - 1:
                 time.sleep(RETRY_DELAY)
     
@@ -87,9 +99,9 @@ def parse_batch_response(text: str) -> Dict[int, str]:
     result = {}
     for line in text.strip().split("\n"):
         line = line.strip()
-        if ":" in line:
+        if ":" in line and line[0].isdigit():
             try:
-                # 尝试解析 "ID:摘要" 格式
+                # 解析 "ID:摘要" 格式
                 parts = line.split(":", 1)
                 topic_id = int(parts[0].strip())
                 summary = parts[1].strip()
@@ -102,9 +114,9 @@ def parse_batch_response(text: str) -> Dict[int, str]:
 
 def summarize_topics(topics: List[Dict]) -> List[Dict]:
     """为帖子列表添加 AI 摘要"""
-    api_key = os.environ.get("GEMINI_API_KEY")
+    api_key = os.environ.get("AZURE_OPENAI_KEY")
     if not api_key:
-        print("Warning: GEMINI_API_KEY not set, skipping summarization")
+        print("Warning: AZURE_OPENAI_KEY not set, skipping summarization")
         return topics
     
     if not topics:

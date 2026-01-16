@@ -25,6 +25,6 @@ jobs:
       - name: Run digest
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          AZURE_OPENAI_KEY: ${{ secrets.AZURE_OPENAI_KEY }}
           TO_EMAIL: ${{ secrets.TO_EMAIL }}
         run: python src/main.py
