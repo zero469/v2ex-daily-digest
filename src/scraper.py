@@ -7,6 +7,7 @@ from typing import List, Dict
 
 # V2EX API
 V2EX_TOPICS_API = "https://www.v2ex.com/api/topics/show.json"
+V2EX_HOT_API = "https://www.v2ex.com/api/topics/hot.json"
 V2EX_REPLIES_API = "https://www.v2ex.com/api/replies/show.json"
 
 # 默认节点配置
@@ -48,8 +49,49 @@ def get_node_display(node_config: Dict) -> str:
     return f"{emoji} {title}"
 
 
-def fetch_node_topics(node: str, limit: int = 20) -> List[Dict]:
-    """获取指定节点的最新帖子"""
+def parse_topic(topic: Dict, node: str = "") -> Dict:
+    """解析帖子数据为统一格式"""
+    created_time = datetime.fromtimestamp(topic.get("created", 0))
+    return {
+        "id": topic.get("id"),
+        "title": topic.get("title"),
+        "url": f"https://www.v2ex.com/t/{topic.get('id')}",
+        "author": topic.get("member", {}).get("username", "unknown"),
+        "replies": topic.get("replies", 0),
+        "created": created_time.strftime("%Y-%m-%d %H:%M"),
+        "node": node or topic.get("node", {}).get("name", ""),
+        "node_title": topic.get("node", {}).get("title", ""),
+    }
+
+
+def fetch_hot_topics(limit: int = 20) -> List[Dict]:
+    """获取全站热门帖子 Top N"""
+    try:
+        headers = {
+            "User-Agent": "V2EX-Daily-Digest/1.0"
+        }
+        response = requests.get(V2EX_HOT_API, headers=headers, timeout=30)
+        response.raise_for_status()
+        topics = response.json()
+        
+        result = []
+        for topic in topics[:limit]:
+            result.append(parse_topic(topic))
+        
+        return result
+    except Exception as e:
+        print(f"Error fetching hot topics: {e}")
+        return []
+
+
+def fetch_node_topics(node: str, limit: int = 20, sort_by_replies: bool = False) -> List[Dict]:
+    """获取指定节点的帖子
+    
+    Args:
+        node: 节点名称
+        limit: 返回数量限制
+        sort_by_replies: 是否按回复数排序（热度）
+    """
     try:
         url = f"{V2EX_TOPICS_API}?node_name={node}"
         headers = {
@@ -64,20 +106,16 @@ def fetch_node_topics(node: str, limit: int = 20) -> List[Dict]:
         cutoff = now - timedelta(hours=48)
 
         recent_topics = []
-        for topic in topics[:limit]:
+        for topic in topics:
             created_time = datetime.fromtimestamp(topic.get("created", 0))
             if created_time > cutoff:
-                recent_topics.append({
-                    "id": topic.get("id"),
-                    "title": topic.get("title"),
-                    "url": f"https://www.v2ex.com/t/{topic.get('id')}",
-                    "author": topic.get("member", {}).get("username", "unknown"),
-                    "replies": topic.get("replies", 0),
-                    "created": created_time.strftime("%Y-%m-%d %H:%M"),
-                    "node": node,
-                })
-
-        return recent_topics
+                recent_topics.append(parse_topic(topic, node))
+        
+        # 按回复数排序（热度）
+        if sort_by_replies:
+            recent_topics.sort(key=lambda x: x["replies"], reverse=True)
+        
+        return recent_topics[:limit]
     except Exception as e:
         print(f"Error fetching node {node}: {e}")
         return []
@@ -110,22 +148,40 @@ def fetch_topic_replies(topic_id: int, max_replies: int = 20) -> List[str]:
         return []
 
 
-def fetch_all_nodes() -> Dict[str, List[Dict]]:
-    """获取所有节点的帖子"""
-    nodes_config = load_config()
+def fetch_all_nodes() -> Dict[str, Dict]:
+    """获取所有帖子：全站热门 + 各节点热门"""
     result = {}
+    
+    # 1. 获取全站热门 Top 20
+    print("Fetching hot topics...")
+    hot_topics = fetch_hot_topics(limit=20)
+    result["_hot"] = {
+        "config": {"name": "_hot", "title": "全站热门", "emoji": "🔥"},
+        "topics": hot_topics
+    }
+    print(f"  Found {len(hot_topics)} hot topics")
+    
+    # 记录已获取的帖子ID，避免重复
+    seen_ids = {t["id"] for t in hot_topics}
+    
+    # 2. 获取各节点热门 Top 10（按回复数排序）
+    nodes_config = load_config()
     
     for node_config in nodes_config:
         node_name = node_config["name"]
-        display_name = get_node_display(node_config)
         print(f"Fetching node: {node_name}")
-        topics = fetch_node_topics(node_name)
+        topics = fetch_node_topics(node_name, limit=20, sort_by_replies=True)
         
-        # 保存节点配置信息供邮件模板使用
+        # 过滤掉已在热门中出现的帖子，取 Top 10
+        unique_topics = [t for t in topics if t["id"] not in seen_ids][:10]
+        
+        # 更新已见ID
+        seen_ids.update(t["id"] for t in unique_topics)
+        
         result[node_name] = {
             "config": node_config,
-            "topics": topics
+            "topics": unique_topics
         }
-        print(f"  Found {len(topics)} recent topics")
+        print(f"  Found {len(unique_topics)} unique hot topics")
     
     return result
