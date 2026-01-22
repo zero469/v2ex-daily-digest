@@ -1,7 +1,7 @@
 """AI 摘要模块 - 使用 Azure OpenAI"""
 import os
 import time
-from typing import Dict, List
+from typing import Dict, List, Optional
 from openai import AzureOpenAI
 
 from scraper import fetch_topic_replies
@@ -35,23 +35,88 @@ def get_client() -> AzureOpenAI | None:
     )
 
 
-def summarize_single_topic(client: AzureOpenAI, topic: Dict) -> Dict[str, str]:
-    """为单个帖子生成摘要和评论总结
+def generate_daily_overview(client: AzureOpenAI, hot_topics: List[Dict]) -> str:
+    """基于热门帖子生成今日一句话概览"""
+    if not hot_topics:
+        return ""
     
-    返回: {"summary": "...", "comments_summary": "..."}
+    # 提取热门帖子标题
+    titles = [t["title"] for t in hot_topics[:15]]
+    titles_text = "\n".join([f"- {t}" for t in titles])
+    
+    prompt = f"""你是V2EX社区的观察员。根据今天的热门帖子标题，用一句话（30-50字）总结今天V2EX社区在讨论什么。
+
+今日热门帖子：
+{titles_text}
+
+要求：
+1. 用轻松、有趣的语气
+2. 提炼2-3个核心话题/趋势
+3. 可以适当加入emoji
+4. 不要用"今天"开头
+
+直接输出一句话，不要有其他内容："""
+
+    for attempt in range(MAX_RETRIES):
+        try:
+            response = client.chat.completions.create(
+                model=DEPLOYMENT_NAME,
+                messages=[{"role": "user", "content": prompt}],
+                max_completion_tokens=100,
+            )
+            return response.choices[0].message.content.strip() or ""
+        except Exception as e:
+            if "429" in str(e) or "rate" in str(e).lower():
+                time.sleep(RETRY_DELAY * (attempt + 1))
+                continue
+            if attempt < MAX_RETRIES - 1:
+                time.sleep(RETRY_DELAY)
+    
+    return ""
+
+
+def summarize_single_topic(client: AzureOpenAI, topic: Dict, is_hot: bool = False) -> Dict:
+    """为单个帖子生成摘要和评论精华
+    
+    Args:
+        client: Azure OpenAI 客户端
+        topic: 帖子数据
+        is_hot: 是否为热门帖子（热门帖子获取更详细的摘要和评论原文）
+    
+    返回: {"summary": "...", "comments_summary": "...", "featured_comments": [...]}
     """
     topic_id = topic["id"]
     title = topic["title"]
     replies_count = topic.get("replies", 0)
     
-    # 获取评论内容
+    # 获取评论内容（现在包含作者信息）
     replies = []
     if replies_count > 0:
-        replies = fetch_topic_replies(topic_id, max_replies=15)
+        replies = fetch_topic_replies(topic_id, max_replies=20 if is_hot else 15)
     
-    # 构建 prompt
-    if replies:
-        replies_text = "\n".join([f"- {r}" for r in replies[:10]])
+    # 热门帖子：更详细的摘要 + 提取精彩评论原文
+    if is_hot and replies:
+        replies_text = "\n".join([f"- @{r['author']}: {r['content']}" for r in replies[:15]])
+        prompt = f"""请为这个V2EX热门帖子生成深度摘要。
+
+帖子标题：{title}
+
+评论区（共{replies_count}条，展示部分）：
+{replies_text}
+
+请按以下格式输出：
+
+【帖子摘要】
+（80-150字，深入分析这个帖子的核心内容、为什么值得一看、读者能从中获得什么。写得有洞察力，让人想点进去看）
+
+【精彩评论】
+（从评论中挑选2-3条最有价值、最有趣或最有争议的评论，保留原文和作者。格式如下）
+@用户名: 评论原文
+@用户名: 评论原文
+
+请直接输出，不要有其他内容："""
+    elif replies:
+        replies_text = "\n".join([f"- {r['content']}" for r in replies[:10]])
         prompt = f"""请为这个V2EX帖子生成摘要。
 
 帖子标题：{title}
@@ -62,10 +127,10 @@ def summarize_single_topic(client: AzureOpenAI, topic: Dict) -> Dict[str, str]:
 请按以下格式输出：
 
 【帖子摘要】
-（50-100字，详细描述帖子的核心内容、作者的主要观点或分享的内容）
+（50-100字，描述帖子的核心内容、作者的主要观点）
 
 【评论精华】
-（30-60字，总结评论区的主要讨论方向、热门观点或有价值的回复）
+（30-60字，总结评论区的主要讨论方向、热门观点）
 
 请直接输出，不要有其他内容："""
     else:
@@ -87,14 +152,14 @@ def summarize_single_topic(client: AzureOpenAI, topic: Dict) -> Dict[str, str]:
                 messages=[
                     {"role": "user", "content": prompt}
                 ],
-                max_completion_tokens=500,
+                max_completion_tokens=600 if is_hot else 500,
             )
             
             output_text = response.choices[0].message.content or ""
             
             if output_text:
-                return parse_summary_response(output_text)
-            return {"summary": "", "comments_summary": ""}
+                return parse_summary_response(output_text, is_hot)
+            return {"summary": "", "comments_summary": "", "featured_comments": []}
             
         except Exception as e:
             error_str = str(e)
@@ -108,12 +173,12 @@ def summarize_single_topic(client: AzureOpenAI, topic: Dict) -> Dict[str, str]:
             if attempt < MAX_RETRIES - 1:
                 time.sleep(RETRY_DELAY)
     
-    return {"summary": "", "comments_summary": ""}
+    return {"summary": "", "comments_summary": "", "featured_comments": []}
 
 
-def parse_summary_response(text: str) -> Dict[str, str]:
+def parse_summary_response(text: str, is_hot: bool = False) -> Dict:
     """解析摘要响应"""
-    result = {"summary": "", "comments_summary": ""}
+    result = {"summary": "", "comments_summary": "", "featured_comments": []}
     
     lines = text.strip().split("\n")
     current_section = None
@@ -123,13 +188,13 @@ def parse_summary_response(text: str) -> Dict[str, str]:
         line = line.strip()
         if "【帖子摘要】" in line:
             if current_section and current_content:
-                result[current_section] = " ".join(current_content).strip()
+                _save_section(result, current_section, current_content, is_hot)
             current_section = "summary"
             current_content = []
-        elif "【评论精华】" in line:
+        elif "【评论精华】" in line or "【精彩评论】" in line:
             if current_section and current_content:
-                result[current_section] = " ".join(current_content).strip()
-            current_section = "comments_summary"
+                _save_section(result, current_section, current_content, is_hot)
+            current_section = "featured_comments" if is_hot else "comments_summary"
             current_content = []
         elif line and current_section:
             # 移除括号提示
@@ -138,13 +203,36 @@ def parse_summary_response(text: str) -> Dict[str, str]:
     
     # 保存最后一个 section
     if current_section and current_content:
-        result[current_section] = " ".join(current_content).strip()
+        _save_section(result, current_section, current_content, is_hot)
     
     return result
 
 
-def summarize_topics(topics: List[Dict]) -> List[Dict]:
-    """为帖子列表添加 AI 摘要"""
+def _save_section(result: Dict, section: str, content: List[str], is_hot: bool):
+    """保存解析的 section 内容"""
+    if section == "featured_comments":
+        # 解析精彩评论：格式 "@用户名: 评论内容"
+        for line in content:
+            if line.startswith("@"):
+                parts = line.split(":", 1)
+                if len(parts) == 2:
+                    author = parts[0].strip().lstrip("@")
+                    comment = parts[1].strip()
+                    result["featured_comments"].append({
+                        "author": author,
+                        "content": comment
+                    })
+    else:
+        result[section] = " ".join(content).strip()
+
+
+def summarize_topics(topics: List[Dict], is_hot: bool = False) -> List[Dict]:
+    """为帖子列表添加 AI 摘要
+    
+    Args:
+        topics: 帖子列表
+        is_hot: 是否为热门帖子（热门帖子获取更详细的摘要）
+    """
     client = get_client()
     if not client:
         print("Warning: AZURE_OPENAI_KEY not set, skipping summarization")
@@ -153,7 +241,8 @@ def summarize_topics(topics: List[Dict]) -> List[Dict]:
     if not topics:
         return topics
     
-    print(f"  Summarizing {len(topics)} topics (with comments)...")
+    label = "hot" if is_hot else "node"
+    print(f"  Summarizing {len(topics)} {label} topics...")
     
     success_count = 0
     for i, topic in enumerate(topics):
@@ -163,10 +252,11 @@ def summarize_topics(topics: List[Dict]) -> List[Dict]:
         
         print(f"    [{i+1}/{len(topics)}] {topic['title'][:30]}...")
         
-        result = summarize_single_topic(client, topic)
+        result = summarize_single_topic(client, topic, is_hot=is_hot)
         
         topic["summary"] = result.get("summary", "")
         topic["comments_summary"] = result.get("comments_summary", "")
+        topic["featured_comments"] = result.get("featured_comments", [])
         
         if topic["summary"]:
             success_count += 1

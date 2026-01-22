@@ -121,8 +121,11 @@ def fetch_node_topics(node: str, limit: int = 20, sort_by_replies: bool = False)
         return []
 
 
-def fetch_topic_replies(topic_id: int, max_replies: int = 20) -> List[str]:
-    """获取帖子的评论内容"""
+def fetch_topic_replies(topic_id: int, max_replies: int = 20) -> List[Dict]:
+    """获取帖子的评论内容（包含作者信息）
+    
+    返回: [{"content": "评论内容", "author": "用户名"}, ...]
+    """
     try:
         url = f"{V2EX_REPLIES_API}?topic_id={topic_id}"
         headers = {
@@ -132,17 +135,18 @@ def fetch_topic_replies(topic_id: int, max_replies: int = 20) -> List[str]:
         response.raise_for_status()
         replies = response.json()
         
-        # 提取评论内容，最多取 max_replies 条
-        reply_contents = []
+        # 提取评论内容和作者，最多取 max_replies 条
+        reply_list = []
         for reply in replies[:max_replies]:
             content = reply.get("content", "").strip()
+            author = reply.get("member", {}).get("username", "anonymous")
             if content:
                 # 限制单条评论长度
                 if len(content) > 200:
                     content = content[:200] + "..."
-                reply_contents.append(content)
+                reply_list.append({"content": content, "author": author})
         
-        return reply_contents
+        return reply_list
     except Exception:
         # 静默失败，不影响主流程
         return []

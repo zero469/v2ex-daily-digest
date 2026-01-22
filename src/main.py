@@ -1,7 +1,7 @@
 """V2EX 每日汇总 - 主程序"""
 import os
 from scraper import fetch_all_nodes
-from summarizer import summarize_topics
+from summarizer import summarize_topics, generate_daily_overview, get_client
 from email_sender import send_email
 
 
@@ -28,15 +28,27 @@ def main():
         print("No new topics in the last 48 hours. Skipping email.")
         return
 
-    # 2. AI 摘要
+    # 2. 生成今日概览
+    print("\n💬 Generating daily overview...")
+    daily_overview = ""
+    hot_topics = all_data.get("_hot", {}).get("topics", [])
+    client = get_client()
+    if client and hot_topics:
+        daily_overview = generate_daily_overview(client, hot_topics)
+        if daily_overview:
+            print(f"  Overview: {daily_overview[:50]}...")
+
+    # 3. AI 摘要（区分热门和普通帖子）
     print("\n🤖 Generating AI summaries...")
     for node_name, data in all_data.items():
         if data["topics"]:
-            data["topics"] = summarize_topics(data["topics"])
+            # 热门帖子用更详细的摘要
+            is_hot = (node_name == "_hot")
+            data["topics"] = summarize_topics(data["topics"], is_hot=is_hot)
 
-    # 3. 发送邮件
+    # 4. 发送邮件
     print(f"\n📧 Sending email to {to_email}...")
-    success = send_email(to_email, all_data)
+    success = send_email(to_email, all_data, daily_overview=daily_overview)
 
     if success:
         print("\n✅ Done!")
