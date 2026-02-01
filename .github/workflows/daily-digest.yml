@@ -2,9 +2,12 @@ name: V2EX Daily Digest
 
 on:
   schedule:
-    # 每天北京时间早上 8 点运行 (UTC 0:00)
     - cron: '0 0 * * *'
-  workflow_dispatch: # 支持手动触发
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
 
 jobs:
   send-digest:
@@ -28,3 +31,11 @@ jobs:
           AZURE_OPENAI_KEY: ${{ secrets.AZURE_OPENAI_KEY }}
           TO_EMAIL: ${{ secrets.TO_EMAIL }}
         run: python src/main.py
+
+      - name: Deploy RSS to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+          destination_dir: .
+          keep_files: true

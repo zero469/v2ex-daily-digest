@@ -3,6 +3,7 @@ import os
 from scraper import fetch_all_nodes
 from summarizer import summarize_topics, generate_daily_overview, get_client
 from email_sender import send_email
+from rss_generator import generate_rss
 
 
 def main():
@@ -46,7 +47,12 @@ def main():
             is_hot = (node_name == "_hot")
             data["topics"] = summarize_topics(data["topics"], is_hot=is_hot)
 
-    # 4. 发送邮件
+    # 4. 生成 RSS feed
+    print("\n📰 Generating RSS feed...")
+    rss_output = os.path.join(os.path.dirname(__file__), "..", "output", "v2ex-digest.xml")
+    generate_rss(all_data, rss_output)
+
+    # 5. 发送邮件
     print(f"\n📧 Sending email to {to_email}...")
     success = send_email(to_email, all_data, daily_overview=daily_overview)
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>V2EX 每日汇总</title>
+    <link>https://www.v2ex.com</link>
+    <description>V2EX 精选帖子每日摘要 - 自动抓取热门内容，AI 智能总结</description>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 01 Feb 2026 16:20:43 GMT</lastBuildDate>
+    <generator>V2EX Daily Digest RSS Generator</generator>
+    <atom:link href="https://zero469.github.io/v2ex-daily-digest/v2ex-digest.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>[🔥 全站热门] 测试帖子标题</title>
+      <link>https://www.v2ex.com/t/123456</link>
+      <description>这是一个测试摘要，展示 AI 生成的内容概述。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/123456</guid>
+      <pubDate>Mon, 02 Feb 2026 02:00:00 GMT</pubDate>
+      <author>testuser</author>
+    </item>
+    <item>
+      <title>[🎨 分享创造] 分享一个开源项目</title>
+      <link>https://www.v2ex.com/t/789012</link>
+      <description>一个很棒的开源工具，解决了某个痛点问题。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/789012</guid>
+      <pubDate>Mon, 02 Feb 2026 01:30:00 GMT</pubDate>
+      <author>developer</author>
+    </item>
+  </channel>
+</rss>
