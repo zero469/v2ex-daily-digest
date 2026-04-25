@@ -5,157 +5,173 @@
     <link>https://www.v2ex.com</link>
     <description>V2EX 精选帖子每日摘要 - 自动抓取热门内容，AI 智能总结</description>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 24 Apr 2026 02:50:12 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 25 Apr 2026 02:38:00 GMT</lastBuildDate>
     <generator>V2EX Daily Digest RSS Generator</generator>
     <atom:link href="https://zero469.github.io/v2ex-daily-digest/v2ex-digest.xml" rel="self" type="application/rss+xml"/>
     <item>
-      <title>[🔥 全站热门] 做了一个自己的 AI 中转站，球球 Token，现支持 CodeX 和 Claude Code</title>
-      <link>https://www.v2ex.com/t/1207949</link>
-      <description>这是一个典型的 V2EX“个人副业 + AI 基础设施”热门帖：楼主因失业空窗，自建 AI 中转站，整合 OpenAI、Claude（含 CodeX、Claude Code）等原生付费账号，通过 CN2 GIA、BGP、Cloudflare 等多种链路降低延迟与门槛，并向社区发放免费额度。帖子既是技术分享也是变相试运营，吸引大量用户围观、要 ID、比价，折射出国内 AI 使用成本、网络质量与灰色中转生态的真实现状。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1207949</guid>
-      <pubDate>Thu, 23 Apr 2026 03:25:00 GMT</pubDate>
-      <author>69partner</author>
+      <title>[🔥 全站热门] 只能说 DeepSeek V4 Pro 继续努力吧，天气卡片效果一般</title>
+      <link>https://www.v2ex.com/t/1208250</link>
+      <description>该帖围绕 DeepSeek V4 Pro 在“天气卡片”前端效果上的实际表现展开，引发了与 Gemini、Claude、Kimi 等模型的横向对比。讨论不仅停留在 UI 好坏，而是深入到模型“工程意识”“业务理解”“前后端取向”等差异，反映出不同 LLM 在真实开发场景中的风格与短板。适合关注 AI 编程落地、前端体验和模型选型的读者。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208250</guid>
+      <pubDate>Fri, 24 Apr 2026 03:45:00 GMT</pubDate>
+      <author>dingawm</author>
     </item>
     <item>
-      <title>[🔥 全站热门] 我斥巨资买了一个域名，准备做一个面向全球用户的校友社区，大家帮忙看看域名是否合适？</title>
-      <link>https://www.v2ex.com/t/1208014</link>
-      <description>楼主花 600 美元买下一个域名，计划打造面向全球的校友社区，却引发 V2EX 对“域名价值”“创业顺序”和“是否对抗巨头”的集体吐槽。评论既现实又尖锐：有人调侃域名会闲置到过期，有人直指在 Facebook 面前毫无胜算，也有人认为域名早已不重要，核心还是产品和执行力。这个帖子折射出程序员创业的常见迷思，非常值得一看。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208014</guid>
-      <pubDate>Thu, 23 Apr 2026 06:44:00 GMT</pubDate>
-      <author>geniushui</author>
+      <title>[🔥 全站热门] Vibe coding 有什么意义？</title>
+      <link>https://www.v2ex.com/t/1208240</link>
+      <description>这帖围绕“Vibe Coding 是否有意义”展开激烈讨论，核心并非要不要用 AI，而是谁来用、怎么用。支持者认为 AI 是放大器，能加速 demo、样板代码与局部实现；反对者则痛陈“无架构、无规范的 vibe coding”正在制造难以维护的技术债，并把烂摊子甩给研发。帖子揭示了当下 AI 编程在组织、责任与工程边界上的真实冲突，对每个正在被 AI 改变工作方式的开发者都很有参考价值。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208240</guid>
+      <pubDate>Fri, 24 Apr 2026 03:28:00 GMT</pubDate>
+      <author>chuchen023</author>
     </item>
     <item>
-      <title>[🔥 全站热门] 如果辞职去环游世界，有没有什么好的方法可以维持经济</title>
-      <link>https://www.v2ex.com/t/1207995</link>
-      <description>这是一个关于“辞职环游世界是否可行”的现实讨论帖。楼主向往自由，但评论迅速把幻想拉回地面：多数人认为普通人边旅行边赚钱极难，自媒体、交易、远程工作都有门槛与不确定性。帖子价值在于它并非鸡汤，而是集体拆解“数字游民梦”的成本、风险与心理账本，帮助读者思考自己到底是在逃离工作，还是在为另一种人生买单。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1207995</guid>
-      <pubDate>Thu, 23 Apr 2026 05:59:00 GMT</pubDate>
-      <author>leehomyhh</author>
+      <title>[🔥 全站热门] 性爱机器人的诞生合理吗？</title>
+      <link>https://www.v2ex.com/t/1208252</link>
+      <description>这个帖子围绕“性爱机器人是否合理”展开，讨论从技术演进、市场需求到社会影响与伦理风险。有人将其视为情趣用品与 AI 的自然升级，也有人担忧其对性别关系、生育率与底层群体的冲击。评论展现了技术乐观主义、现实功利主义与隐约的不安，折射出当代青年对性、情感与科技替代的复杂态度，颇具时代切片价值。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208252</guid>
+      <pubDate>Fri, 24 Apr 2026 03:57:00 GMT</pubDate>
+      <author>mode171</author>
     </item>
     <item>
-      <title>[🔥 全站热门] 我发现程序员这个群体很大部分其实挺抠的</title>
-      <link>https://www.v2ex.com/t/1207975</link>
-      <description>帖子从“程序员很抠”这一争议性观察切入，引发大量自我反思与反驳。评论认为所谓“抠”更多源于程序员对信息差、开源替代、感性溢价和订阅模式的高度敏感，本质是理性消费而非吝啬。讨论延伸到互联网早期免费精神、对垄断定价的警惕，以及“在不影响赚钱的前提下为什么要多花钱”。适合对程序员消费观、产品定价和用户认知感兴趣的人阅读。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1207975</guid>
-      <pubDate>Thu, 23 Apr 2026 04:43:00 GMT</pubDate>
-      <author>aczh</author>
+      <title>[🔥 全站热门] DeepSeek V4 终于出来了。。不知道强不强</title>
+      <link>https://www.v2ex.com/t/1208225</link>
+      <description>围绕 DeepSeek V4 发布，讨论集中在三点：是否开源、能否本地部署以及“不支持多模态”的取舍。有人看重其文本专注与潜在性价比，有人质疑 1.6T 参数量带来的部署成本和实用性，尤其在 UI/编程场景下与 Kimi、GLM 的对比。帖子真实反映了技术理想与工程现实的张力，适合关注国产大模型走向的读者。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208225</guid>
+      <pubDate>Fri, 24 Apr 2026 03:07:00 GMT</pubDate>
+      <author>tianjiyao</author>
     </item>
     <item>
-      <title>[🔥 全站热门] 《 AI 带来的革命性改变，为何还没发生 》</title>
-      <link>https://www.v2ex.com/t/1207970</link>
-      <description>这帖围绕“AI 革命为何体感不强”展开，核心争论在于时间尺度、落地场景与社会结构阻力。有人认为变革已在悄然发生，只是像工业革命一样需要时间沉淀；也有人指出 AI 尚未真正进入实体经济，更多停留在宣传与工具层面。讨论横跨技术、资本、国家治理与个人感受，能帮助读者校准对 AI 未来的预期，避免过度乐观或过度失望。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1207970</guid>
-      <pubDate>Thu, 23 Apr 2026 04:03:00 GMT</pubDate>
-      <author>fescover</author>
+      <title>[🔥 全站热门] 如果你有且仅有一次机会获得一项超能力，你最想拥有什么能力？</title>
+      <link>https://www.v2ex.com/t/1208310</link>
+      <description>这是一个典型却耐看的“超能力选择题”，表面是脑洞狂欢，实则映射了不同人生阶段的真实焦虑：有人渴望绝对安全（反弹、永生自愈），有人追求规则外挂（言出法随、心想事成），也有人把超能力落到极其现实的生活细节（快递瞬移、永远有车位）。评论区的精彩之处在于，从幻想走向逻辑，从爽点走向副作用，读完很容易反思：如果只能选一次，你真正想解决的是什么问题。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208310</guid>
+      <pubDate>Fri, 24 Apr 2026 07:24:00 GMT</pubDate>
+      <author>qxmqh</author>
     </item>
     <item>
-      <title>[🔥 全站热门] 个人觉得 v2 应该有个 [踩] 的功能，而不仅仅是 [赞]</title>
-      <link>https://www.v2ex.com/t/1207950</link>
-      <description>这是一场围绕 V2EX 是否应引入「踩」功能的社区价值讨论。支持者认为仅有「赞」无法有效抑制低质、冒犯性言论，也难以让真正有价值的内容脱颖而出；反对或谨慎者则担心机制被滥用、导致情绪化对立。讨论延伸到收藏是否应给予铜币、block 是否足够、以及 Reddit 等平台的经验，对“社区治理应依赖机制还是自律”给出了多角度思考。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1207950</guid>
-      <pubDate>Thu, 23 Apr 2026 03:28:00 GMT</pubDate>
-      <author>rich1e</author>
+      <title>[🔥 全站热门] 时光荏苒，四年了自己一点长进都没有。大家点进来看看我这个笨蛋</title>
+      <link>https://www.v2ex.com/t/1208262</link>
+      <description>这是一个关于“长期努力却原地踏步”的真实自白。楼主用四年的学习经历，映射出当下程序员群体的集体焦虑：初级岗位消失、AI 冲击、学习无反馈。评论区既有残酷的“劝退”，也有务实的“干中学”建议，揭示了技术学习的本质问题：没有真实需求与产出，再久的时间也只是重复迷茫。适合所有对转行、学习效率、职业方向感到困惑的人阅读。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208262</guid>
+      <pubDate>Fri, 24 Apr 2026 04:43:00 GMT</pubDate>
+      <author>xiaoyuanei668</author>
     </item>
     <item>
-      <title>[🔥 全站热门] 请教巨佬：现在 [4 月 23 日] 这个时间点值得买 iphone17 吗？</title>
-      <link>https://www.v2ex.com/t/1208051</link>
-      <description>这个帖子围绕“4 月底是否值得买 iPhone 17”展开，核心是价格时机与产品周期的博弈：等 618 是否更便宜、首发是否更稳妥、新老款如何取舍。讨论延伸到供应链屏幕差异、华强北渠道风险、未来 iPhone 18 的发布时间与配置策略。适合想在“等等党”和“早买党”之间做决策的用户，能获得对价格走势、渠道选择和换机心态的真实参考。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208051</guid>
-      <pubDate>Thu, 23 Apr 2026 08:24:00 GMT</pubDate>
-      <author>Tiger1994</author>
+      <title>[🔥 全站热门] 我做了个工具让 8GB 显卡跑 30B 模型从 3 tok/s 提到 21 tok/s，记录一下技术发现</title>
+      <link>https://www.v2ex.com/t/1208365</link>
+      <description>作者分享了一款针对 llama.cpp 深度优化的本地部署工具，让仅有 8–10GB 显存的显卡也能把 30B 大模型推理速度从 3 tok/s 提升到 21 tok/s。帖子不仅记录了显存分配、量化、回退策略等关键技术取舍，还在评论区与用户实时排查问题、迭代版本。非常适合关注“低显存跑大模型”“本地推理极限优化”的开发者参考。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208365</guid>
+      <pubDate>Fri, 24 Apr 2026 10:51:00 GMT</pubDate>
+      <author>KaiWuBOSS</author>
     </item>
     <item>
-      <title>[🔥 全站热门] 五年过去了，结论有什么变化吗？</title>
-      <link>https://www.v2ex.com/t/1208040</link>
-      <description>这是一个以“五年”为时间尺度的数据库使用反思帖。评论从个人职业变化切入，逐渐汇聚成行业共识：MySQL 热度下降，PostgreSQL 成为事实上的首选，SQLite 在轻量场景中被重新重视。帖子既反映技术选型的演变，也折射出从“学习—使用—离开开发”的现实路径，值得所有做过或正在做后端的人对照自身五年变化来读。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208040</guid>
-      <pubDate>Thu, 23 Apr 2026 07:51:00 GMT</pubDate>
-      <author>dhysum</author>
+      <title>[🔥 全站热门] 占比大幅提升！谷歌：公司内部 75%的新代码已由 AI 生成</title>
+      <link>https://www.v2ex.com/t/1208284</link>
+      <description>谷歌称“75%新代码由 AI 生成”引发技术社区强烈分歧：一方认为这是生产力跃迁的信号，另一方则质疑统计口径、营销动机与工程责任的真实性。评论集中讨论“生成≠无人审核”“AI 写得多是否等于价值高”，以及未来工程师是否会被削弱代码审查与兜底能力。帖子值得一看之处在于，它揭示了 AI 编程落地阶段最现实的焦虑：效率、责任与工程可信度之间的张力。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208284</guid>
+      <pubDate>Fri, 24 Apr 2026 06:20:00 GMT</pubDate>
+      <author>TimLang</author>
     </item>
     <item>
-      <title>[🎨 分享创造] 面对 140 年一遇的超级厄尔尼诺，我做了个全球监测小站</title>
-      <link>https://www.v2ex.com/t/1208133</link>
-      <description>作者在 140 年一遇的超级厄尔尼诺背景下，自制了一个全球气候监测小站，整合 NOAA、WMO 等官方气象模型数据进行展示，旨在帮助公众更直观地关注和理解厄尔尼诺及气候变化趋势。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208133</guid>
-      <pubDate>Thu, 23 Apr 2026 16:49:00 GMT</pubDate>
-      <author>VulcanEon</author>
+      <title>[🔥 全站热门] 我是不是意味着职业生涯到期了？</title>
+      <link>https://www.v2ex.com/t/1208339</link>
+      <description>一个 26 岁程序员在求职受挫后发帖自问“职业生涯是否到期”，引发大量共鸣与劝慰。评论区从年龄、城市、技术方向到心态建设，系统性地拆解了“早期失败≠终局”的焦虑根源。这是一篇关于行业寒冬下普通程序员如何重新定位自我、避免过早自我否定的现实样本，值得所有职场人一看。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208339</guid>
+      <pubDate>Fri, 24 Apr 2026 08:49:00 GMT</pubDate>
+      <author>Pony69</author>
     </item>
     <item>
-      <title>[🎨 分享创造] 一个将苹果健康 APP 数据导出的工具，然后把你的数据喂给 AI 分析</title>
-      <link>https://www.v2ex.com/t/1208124</link>
-      <description>作者分享了一个工具，可将苹果健康 App 中的个人健康数据导出，并进一步提供给 AI 进行分析，帮助用户更好理解自身健康状况。帖子中还附带了一些可领取的资源或兑换码，供大家体验使用。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208124</guid>
-      <pubDate>Thu, 23 Apr 2026 15:02:00 GMT</pubDate>
-      <author>iPocket</author>
+      <title>[🔥 全站热门] GPT5.5 在 codex 中 credit 消耗量相比 5.4 翻倍</title>
+      <link>https://www.v2ex.com/t/1208242</link>
+      <description>该帖围绕 GPT‑5.5 在 Codex 场景下 credit/价格消耗“翻倍”的争议展开：官方称 token 更省，但实际单价上涨，导致 Plus 用户很快用完额度。评论中既有高强度开发者吐槽“20 分钟耗光”，也有 Pro 用户表示无感，体现不同套餐、使用模式下体验分化。帖子帮助读者判断 5.5 是否值得升级，以及如何在成本与效率间取舍。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208242</guid>
+      <pubDate>Fri, 24 Apr 2026 03:29:00 GMT</pubDate>
+      <author>BeautifulSoap</author>
     </item>
     <item>
-      <title>[🎨 分享创造] [送码 50 个] 自己手搓了个高颜值的倒数日 App——拾光机，求 V 友们指点</title>
-      <link>https://www.v2ex.com/t/1208126</link>
-      <description>作者在 V2EX 分享了自己独立开发的高颜值倒数日 App「拾光机」，并送出 50 个兑换码，希望 V 友试用后提出改进建议。帖子主要围绕产品设计、功能体验展开，作者积极与评论互动。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208126</guid>
-      <pubDate>Thu, 23 Apr 2026 15:04:00 GMT</pubDate>
-      <author>lhjyxxzy</author>
+      <title>[🎨 分享创造] Aria2 的 macOS 原生客户端</title>
+      <link>https://www.v2ex.com/t/1208355</link>
+      <description>帖子介绍了一款 Aria2 的 macOS 原生客户端，主打作为 aria2 的远程管理工具，支持多协议下载与多实例管理。提供商店版和公证版，内置 aria2，简化配置，实现即下即用。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208355</guid>
+      <pubDate>Fri, 24 Apr 2026 10:03:00 GMT</pubDate>
+      <author>saltpi</author>
     </item>
     <item>
-      <title>[🎨 分享创造] 求真！最近 AI 生图的能力强到可怕</title>
-      <link>https://www.v2ex.com/t/1208166</link>
-      <description>帖子围绕“AI 生图能力是否已强到难辨真假”展开，作者表达了对当前 AI 生成图片逼真程度的震惊与担忧，隐含讨论其对现实判断、信息可信度及社会影响带来的挑战。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208166</guid>
-      <pubDate>Fri, 24 Apr 2026 01:28:00 GMT</pubDate>
-      <author>sinyu1012</author>
+      <title>[🎨 分享创造] 分享一个我做的 GPT Image 2 prompt gallery，整理了 400+ 提示词和模板</title>
+      <link>https://www.v2ex.com/t/1208374</link>
+      <description>作者分享了自己制作的一个 GPT Image 2 Prompt Gallery，整理并分类了 400 多条图像生成提示词和模板，方便用户直接参考和使用，目的是提升使用 GPT Image 2 进行创作的效率。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208374</guid>
+      <pubDate>Fri, 24 Apr 2026 12:17:00 GMT</pubDate>
+      <author>roper</author>
     </item>
     <item>
-      <title>[🎨 分享创造] 做了一个自动翻译的 Hacker News 客户端</title>
-      <link>https://www.v2ex.com/t/1208130</link>
-      <description>作者分享自己开发的自动翻译 Hacker News 客户端，主打将英文内容自动翻译成中文，方便中文用户高效浏览和阅读 HN 资讯，并在 V2EX 发布介绍与体验方式。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208130</guid>
-      <pubDate>Thu, 23 Apr 2026 15:36:00 GMT</pubDate>
-      <author>djyde</author>
+      <title>[🎨 分享创造] 分享个 B 站省流脚本，可以总结视频和评论区</title>
+      <link>https://www.v2ex.com/t/1208356</link>
+      <description>作者分享了一个用于 B 站的省流脚本，可自动总结视频内容和评论区。并介绍自己基于 SigCLI + Claude Code 的 Bilibili skill 搭建的工作流，通过获取 AI 字幕实现视频摘要。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208356</guid>
+      <pubDate>Fri, 24 Apr 2026 10:07:00 GMT</pubDate>
+      <author>aotuworld</author>
     </item>
     <item>
-      <title>[🎨 分享创造] Packpour：我做了个专门给 App Store Connect 填多语言元数据的小工具</title>
-      <link>https://www.v2ex.com/t/1208145</link>
-      <description>作者介绍了 Packpour 工具，面向开发者简化 App Store Connect 多语言元数据的填写与管理流程，旨在提升发布效率并减少重复劳动。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208145</guid>
-      <pubDate>Thu, 23 Apr 2026 22:20:00 GMT</pubDate>
-      <author>hashtome</author>
+      <title>[🎨 分享创造] 做了一个小工具，把 links 旅行视频里的地点整理到 3D 地球上</title>
+      <link>https://www.v2ex.com/t/1208405</link>
+      <description>作者分享了一个自己制作的小工具，可以把 links 的旅行视频中提到或出现的地点整理并展示在 3D 地球上，方便直观查看旅行路线和地点分布，提升观看和规划旅行的体验。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208405</guid>
+      <pubDate>Fri, 24 Apr 2026 16:56:00 GMT</pubDate>
+      <author>xiaoheijw</author>
     </item>
     <item>
-      <title>[🎨 分享创造] 写了个 iOS 打码 App「遮鸭 Maskduck」，纯离线免费</title>
-      <link>https://www.v2ex.com/t/1208205</link>
-      <description>作者分享自制 iOS 打码应用「遮鸭 Maskduck」，主打纯离线、免费处理图片与视频打码，保护隐私；帖子可能讨论功能、实现思路、体验与改进建议。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208205</guid>
-      <pubDate>Fri, 24 Apr 2026 02:43:00 GMT</pubDate>
-      <author>mangobeta</author>
+      <title>[🎨 分享创造] [iOS 公测继续招募] iAssets 资产管理管家 ✨</title>
+      <link>https://www.v2ex.com/t/1208426</link>
+      <description>帖子介绍了一款名为 iAssets 的 iOS 资产管理应用，正在持续招募公测用户。内容可能包含产品功能亮点、使用场景、测试方式以及开发者希望收集的反馈意见，欢迎感兴趣的用户参与体验与讨论。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208426</guid>
+      <pubDate>Sat, 25 Apr 2026 01:49:00 GMT</pubDate>
+      <author>debuginn</author>
     </item>
     <item>
-      <title>[🎨 分享创造] 亲身经历猫咪急症，我做了一款猫狗疼痛检测工具，希望能救你家毛孩一命</title>
-      <link>https://www.v2ex.com/t/1208183</link>
-      <description>作者分享自家猫咪突发急症的亲身经历，因未能及时察觉疼痛而深感遗憾，进而开发了一款猫狗疼痛检测工具。帖子介绍了宠物疼痛识别的重要性、工具原理及使用方式，希望帮助宠物主人更早发现异常，避免悲剧发生。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208183</guid>
-      <pubDate>Fri, 24 Apr 2026 02:06:00 GMT</pubDate>
-      <author>zxypro</author>
+      <title>[🎨 分享创造] EzRemove AI - Free Background Remover Online 2026</title>
+      <link>https://www.v2ex.com/t/1208399</link>
+      <description>帖子介绍了一款名为 EzRemove AI 的免费在线背景移除工具，主打 2026 年最新 AI 技术，讨论其使用体验、处理效果、速度表现、适用场景以及与同类工具的对比与推广。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208399</guid>
+      <pubDate>Fri, 24 Apr 2026 16:00:00 GMT</pubDate>
+      <author>zxhywork</author>
     </item>
     <item>
-      <title>[🎨 分享创造] 如何用 AI 做比较酷炫的落地页?</title>
-      <link>https://www.v2ex.com/t/1208176</link>
-      <description>讨论如何利用 AI 快速生成酷炫落地页，涵盖设计思路、文案与视觉生成、动效与交互、工具/模型选择、提示词与工作流，以及落地案例与成本效率。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208176</guid>
-      <pubDate>Fri, 24 Apr 2026 01:50:00 GMT</pubDate>
-      <author>wellyougo</author>
+      <title>[🎨 分享创造] aisaysme.com 欢迎来说说你被 AI 评成了什么人设</title>
+      <link>https://www.v2ex.com/t/1208396</link>
+      <description>帖子介绍网站 aisaysme.com，邀请用户让 AI 分析并给出个人“人设”评价。讨论可能围绕 AI 如何判断性格、标签是否准确、有趣程度，以及大家各自被 AI 评成了什么类型的人。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208396</guid>
+      <pubDate>Fri, 24 Apr 2026 15:07:00 GMT</pubDate>
+      <author>liubai</author>
     </item>
     <item>
-      <title>[🎨 分享创造] 开源一个查看 k8s 的菜单栏工具-kubebar</title>
-      <link>https://www.v2ex.com/t/1208162</link>
-      <description>作者在 V2EX 分享并开源了一款名为 kubebar 的菜单栏工具，用于在桌面端快速查看 Kubernetes 集群状态，如节点、Pod、资源使用情况，并邀请社区试用、反馈和讨论功能改进方向。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208162</guid>
-      <pubDate>Fri, 24 Apr 2026 01:14:00 GMT</pubDate>
-      <author>derek80</author>
+      <title>[🎨 分享创造] SubFlowAI 实时字幕（macOS）V1.3.1 更新来了</title>
+      <link>https://www.v2ex.com/t/1208392</link>
+      <description>介绍 SubFlowAI 实时字幕 macOS 版 V1.3.1 更新，涵盖字幕准确性与延迟优化、稳定性修复、新语言支持及使用体验改进，并邀请用户反馈。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208392</guid>
+      <pubDate>Fri, 24 Apr 2026 14:26:00 GMT</pubDate>
+      <author>nocmt</author>
+    </item>
+    <item>
+      <title>[🎨 分享创造] 最近 GPT Image 2 挺火，顺手撸了个小工具站</title>
+      <link>https://www.v2ex.com/t/1208386</link>
+      <description>楼主提到近期 GPT Image 2 热度较高，便顺手开发了一个基于该模型的小工具站，并在帖子中分享开发动机、功能体验，可能引发关于 AI 图像生成、应用落地和使用效果的讨论。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208386</guid>
+      <pubDate>Fri, 24 Apr 2026 13:45:00 GMT</pubDate>
+      <author>Plugcamp</author>
+    </item>
+    <item>
+      <title>[🎨 分享创造] 推荐一个我在做的开源桌面工具 CC Archive</title>
+      <link>https://www.v2ex.com/t/1208375</link>
+      <description>作者在 V2EX 推荐自己开发的开源桌面工具 CC Archive，介绍其设计初衷、核心功能与适用场景，并邀请社区体验、反馈和参与贡献。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208375</guid>
+      <pubDate>Fri, 24 Apr 2026 12:21:00 GMT</pubDate>
+      <author>nyfwan123</author>
     </item>
     <item>
       <title>[💡 奇思妙想] 想做个有真实长时记忆和多人房间的 AI 角色扮演平台，大家看看有没有搞头</title>
       <link>https://www.v2ex.com/t/1208164</link>
-      <description>作者设想打造一个具备真实长时记忆与多人房间机制的 AI 角色扮演平台，每个角色作为独立 Agent，记忆结合推理而非简单 RAG，并与酒馆 AI 等现有方案区分，征求大家对可行性与前景的看法。</description>
+      <description>作者想打造一个具备真实长时记忆与多人房间的 AI 角色扮演平台，每个角色作为独立 Agent 运作，记忆包含推理能力而非简单 RAG，区别于酒馆 AI，并询问社区是否有市场与可行性。</description>
       <guid isPermaLink="true">https://www.v2ex.com/t/1208164</guid>
       <pubDate>Fri, 24 Apr 2026 01:21:00 GMT</pubDate>
       <author>largep</author>
@@ -163,90 +179,74 @@
     <item>
       <title>[💡 奇思妙想] 怎么用 gpt image2 生成特离谱和搞事早苗的图片？</title>
       <link>https://www.v2ex.com/t/1208086</link>
-      <description>帖主询问如何使用 gpt image2 生成风格夸张、离谱或带有“搞事早苗”特色的图片，希望了解合适的提示词写法或技巧，以突破模型生成限制，达到更接近目标风格的效果。</description>
+      <description>帖子询问如何用 gpt image2 生成风格夸张、搞事早苗的图片，探讨提示词写法与生成限制，作者希望获得可行的技巧与经验分享。</description>
       <guid isPermaLink="true">https://www.v2ex.com/t/1208086</guid>
       <pubDate>Thu, 23 Apr 2026 10:33:00 GMT</pubDate>
       <author>v2Donuts</author>
     </item>
     <item>
-      <title>[💡 奇思妙想] AI 疫苗么。。</title>
-      <link>https://www.v2ex.com/t/1207799</link>
-      <description>作者: foolherb | 回复数: 1</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1207799</guid>
-      <pubDate>Wed, 22 Apr 2026 10:04:00 GMT</pubDate>
-      <author>foolherb</author>
+      <title>[👨‍💻 程序员] 帮大家试过了 V4 变强了，但是也太贵了，早点出 coding plan 吧</title>
+      <link>https://www.v2ex.com/t/1208338</link>
+      <description>楼主实测 V4 后认为其代码理解和推理能力明显增强，能在需求不清晰的情况下分析调用逻辑并解决问题，整体接近高端模型水平，但价格偏高，希望尽早推出更合适的 coding 付费方案。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208338</guid>
+      <pubDate>Fri, 24 Apr 2026 08:48:00 GMT</pubDate>
+      <author>devloperchen</author>
     </item>
     <item>
-      <title>[👨‍💻 程序员] 清理电脑文件有感，人是真不应该加班</title>
-      <link>https://www.v2ex.com/t/1208169</link>
-      <description>作者在清理电脑旧文件时回顾过往加班项目，意识到许多当年拼命投入的工作事后看来并无太大意义，由此感慨人不该被加班和工作绑架，更应珍惜当下与个人感受。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208169</guid>
-      <pubDate>Fri, 24 Apr 2026 01:39:00 GMT</pubDate>
-      <author>chunkingName</author>
+      <title>[👨‍💻 程序员] 性价比高的 AI 有推荐的吗？</title>
+      <link>https://www.v2ex.com/t/1208391</link>
+      <description>帖子讨论“性价比高的 AI 服务”选择，楼主询问是否有值得推荐的方案。回复中主要围绕 Claude Pro、ChatGPT 会员等展开，对价格、额度、使用体验以及注册门槛（如海外账号/手机号）进行比较。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208391</guid>
+      <pubDate>Fri, 24 Apr 2026 14:11:00 GMT</pubDate>
+      <author>qviqvi</author>
     </item>
     <item>
-      <title>[👨‍💻 程序员] Google AI Ultra 又搞事情， AI credits 直接砍半</title>
-      <link>https://www.v2ex.com/t/1208119</link>
-      <description>帖子讨论 Google AI Ultra 近期被指在未明确说明的情况下，将用户可用的 AI credits 从原本的 25000 直接减半至 12500。作者及用户认为此举损害信誉、体验变差，质疑谷歌对该产品的重视程度。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208119</guid>
-      <pubDate>Thu, 23 Apr 2026 14:28:00 GMT</pubDate>
-      <author>Kodama</author>
+      <title>[👨‍💻 程序员] 大项目中大家真的会用 Spec-Driven Development 吗？</title>
+      <link>https://www.v2ex.com/t/1208418</link>
+      <description>帖子围绕“大项目中是否真的采用 Spec-Driven Development（SDD）”展开讨论。作者关注在 AI 主力编程背景下，是否应通过规格先行来约束和引导开发，以及这种方式在大型项目中的实际可行性与维护成本。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208418</guid>
+      <pubDate>Sat, 25 Apr 2026 00:22:00 GMT</pubDate>
+      <author>CodeY99</author>
     </item>
     <item>
-      <title>[👨‍💻 程序员] 35 岁前端，裁员失业后，我花 1 个月做了个 AI 生图网站</title>
-      <link>https://www.v2ex.com/t/1208191</link>
-      <description>作者35岁前端被裁后失业，用1个月独立开发AI生图网站，分享产品思路、技术选型、运营尝试与变现前景，引发关于转型与创业的讨论。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208191</guid>
-      <pubDate>Fri, 24 Apr 2026 02:12:00 GMT</pubDate>
-      <author>qianghaha</author>
+      <title>[👨‍💻 程序员] [ 模型对比 ] 用手里有的几个模型做了一个小对比</title>
+      <link>https://www.v2ex.com/t/1208363</link>
+      <description>作者用手头可用的多个大模型做了一次简单对比测试，展示了不同模型在同一任务下的输出效果，并说明了所用模型的来源和使用方式，意在分享个人体验和初步感受，但对比场景相对基础。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208363</guid>
+      <pubDate>Fri, 24 Apr 2026 10:31:00 GMT</pubDate>
+      <author>pedclub</author>
     </item>
     <item>
-      <title>[👨‍💻 程序员] 小米和腾讯 Token Plan 最坑的就是即便命中缓存依旧正常算 Token</title>
-      <link>https://www.v2ex.com/t/1208104</link>
-      <description>帖子吐槽小米和腾讯的 Token Plan 计费机制，认为其最大问题在于即便命中缓存也照常扣 Token，被质疑是在“变相坑钱”。作者认为缓存未能带来应有的成本减免，使该方案对用户不友好。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208104</guid>
-      <pubDate>Thu, 23 Apr 2026 12:30:00 GMT</pubDate>
-      <author>ebushicao</author>
+      <title>[👨‍💻 程序员] 这种图片是 ai 如何生成的呀？</title>
+      <link>https://www.v2ex.com/t/1208347</link>
+      <description>帖子讨论某类常见 AI 图片的生成方式。作者询问这些图片是如何制作的，核心思路是将现有图片交给 AI（如 Gemini、OpenAI）分析提示词，再用生成的提示词复刻或创作同风格图片。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208347</guid>
+      <pubDate>Fri, 24 Apr 2026 09:14:00 GMT</pubDate>
+      <author>lvxiaomao</author>
     </item>
     <item>
-      <title>[👨‍💻 程序员] 这些模型的市场容易做吗</title>
-      <link>https://www.v2ex.com/t/1208100</link>
-      <description>帖子讨论“这些模型的市场是否容易做”，作者主要关注大模型 API 的商业化空间，尤其是是否值得付费。评论中提到大量模型（如 NVIDIA NIM、Ollama、Codex 等）已能低成本甚至零成本使用，2C 场景下付费意义不大，更可能的机会在 2B 业务。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208100</guid>
-      <pubDate>Thu, 23 Apr 2026 12:18:00 GMT</pubDate>
-      <author>Yserver</author>
+      <title>[👨‍💻 程序员] 想问下有没有对 “中英混输 + 自动记忆词汇” 支持较好的输入法方案</title>
+      <link>https://www.v2ex.com/t/1208404</link>
+      <description>帖子讨论是否存在对“中英混输 + 自动记忆词汇”支持较好的输入法方案。作者关注中英文夹杂输入的体验与候选词设计，尤其是输入英文单词时如何结合上下文与词库进行智能联想与记忆。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208404</guid>
+      <pubDate>Fri, 24 Apr 2026 16:56:00 GMT</pubDate>
+      <author>cellsyx</author>
     </item>
     <item>
-      <title>[👨‍💻 程序员] 有 DJ action 6 的朋友吗? 问下侧边那个切换视频/图片的按钮是不是很难按</title>
-      <link>https://www.v2ex.com/t/1208139</link>
-      <description>楼主询问是否有 DJI Action 6 用户，反馈侧边视频/照片切换键是否难按，表达对按键手感与使用体验的不满，想确认是否为普遍问题。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208139</guid>
-      <pubDate>Thu, 23 Apr 2026 19:34:00 GMT</pubDate>
-      <author>Hermitist</author>
+      <title>[👨‍💻 程序员] 分享一个 Vibe Coding 的双仓库 UI 提速技巧</title>
+      <link>https://www.v2ex.com/t/1208371</link>
+      <description>帖子分享了一种“Vibe Coding”的双仓库 UI 提速技巧：先用独立仓库快速生成、试验多套纯 UI 原型进行头脑风暴，定稿后再由 AI 一比一复刻进主仓，从而降低主线复杂度、加快设计与实现节奏。</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208371</guid>
+      <pubDate>Fri, 24 Apr 2026 11:57:00 GMT</pubDate>
+      <author>hamsterbase</author>
     </item>
     <item>
-      <title>[👨‍💻 程序员] 做了一个 AI 头像生成器，可以免费生成 2 次</title>
-      <link>https://www.v2ex.com/t/1208128</link>
-      <description>作者分享了自己制作的 AI 头像生成器，介绍了基本功能与使用体验，并提供每位用户免费生成 2 次的机会，邀请大家试用并提出反馈。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208128</guid>
-      <pubDate>Thu, 23 Apr 2026 15:12:00 GMT</pubDate>
-      <author>hashkitly</author>
-    </item>
-    <item>
-      <title>[👨‍💻 程序员] CPA CLIProxyAPI 被 Windows 提示病毒</title>
-      <link>https://www.v2ex.com/t/1208123</link>
-      <description>作者反映在使用 CPA 的 CLIProxyAPI 时，被 Windows 安全防护提示为病毒，担心安全性并询问是否为误报，讨论杀毒软件拦截对工具使用的影响。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208123</guid>
-      <pubDate>Thu, 23 Apr 2026 15:00:00 GMT</pubDate>
-      <author>efeng5872</author>
-    </item>
-    <item>
-      <title>[👨‍💻 程序员] 一个人写了大半年 Android App，聊聊过程中的一些取舍，第三篇</title>
-      <link>https://www.v2ex.com/t/1208179</link>
-      <description>作者分享独立开发 Android 应用半年多的实践经验，第三篇侧重技术与产品取舍，讨论架构选择、功能优先级、开发效率权衡，以及过程中遇到的坑与反思。</description>
-      <guid isPermaLink="true">https://www.v2ex.com/t/1208179</guid>
-      <pubDate>Fri, 24 Apr 2026 02:03:00 GMT</pubDate>
-      <author>putilaoha</author>
+      <title>[👨‍💻 程序员] 说句冒犯的话， DeepSeek V4 Pro 让我有点破防！</title>
+      <link>https://www.v2ex.com/t/1208383</link>
+      <description>作者: lyhiving | 回复数: 0</description>
+      <guid isPermaLink="true">https://www.v2ex.com/t/1208383</guid>
+      <pubDate>Fri, 24 Apr 2026 13:11:00 GMT</pubDate>
+      <author>lyhiving</author>
     </item>
   </channel>
 </rss>
